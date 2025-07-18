@@ -76,6 +76,12 @@ class FindingContainerTest(unittest.TestCase):
             + "my_proto.proto L5: An existing resource_definition `subject` is removed.\n"
             + "my_proto.proto L12: An existing method `subject` is removed from service `context`.\n",
         )
+        self.assertEqual(
+            self.finding_container.to_suggested_commits(),
+            "my_proto.proto L2: remove rpc method `Placeholder.DoThing`.\n"
+            + "my_proto.proto L6: remove message `input`.\n"
+            + "my_proto.proto L12: remove message `output`.\n",
+        )
 
     def test_change_type_major_1(self):
         finding_container = FindingContainer()
