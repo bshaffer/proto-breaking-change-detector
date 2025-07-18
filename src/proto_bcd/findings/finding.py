@@ -14,7 +14,7 @@
 
 
 from proto_bcd.findings.messages import templates
-from proto_bcd.findings.suggested_commits import templates as suggested_commit_templates
+from proto_bcd.findings.suggested_commits import suggested_commit_templates
 
 
 class Finding:

@@ -197,4 +197,4 @@ _templates[FindingCategory.ENUM_VALUE_COMMENT_CHANGE] = (
     "A comment for enum value `{subject}` in enum `{context}` is changed."
 )
 
-templates = MappingProxyType(_templates)
+suggested_commit_templates = MappingProxyType(_templates)
