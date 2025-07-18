@@ -78,9 +78,9 @@ class FindingContainerTest(unittest.TestCase):
         )
         self.assertEqual(
             self.finding_container.to_suggested_commits(),
-            "my_proto.proto L2: remove rpc method `Placeholder.DoThing`.\n"
-            + "my_proto.proto L6: remove message `input`.\n"
-            + "my_proto.proto L12: remove message `output`.\n",
+            "my_other_proto.proto: remove method_signature `type` from rpc method `context.subject`.\n"
+            + "my_proto.proto L5: remove resource_definition `subject`.\n"
+            + "my_proto.proto L12: remove rpc method `context.subject`.\n",
         )
 
     def test_change_type_major_1(self):

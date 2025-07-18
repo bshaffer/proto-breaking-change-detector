@@ -81,9 +81,9 @@ class DectetorTest(unittest.TestCase):
             ).detect_breaking_changes()
             self.assertEqual(
                 fake_output.getvalue(),
-                "my_proto.proto L2: remove rpc method `Placeholder.DoThing`.\n"
-                + "my_proto.proto L6: remove message `input`.\n"
-                + "my_proto.proto L12: remove message `output`.\n",
+                "my_proto.proto L2: An existing method `DoThing` is removed from service `Placeholder`.\n"
+                + "my_proto.proto L6: An existing message `input` is removed.\n"
+                + "my_proto.proto L12: An existing message `output` is removed.\n",
             )
             self.assertEqual(len(result), 3)
 
