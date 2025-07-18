@@ -104,7 +104,9 @@ class DectetorTest(unittest.TestCase):
         self.assertEqual(
             breaking_changes[0].get_message(), "An existing enum `foo` is removed."
         )
-        self.assertEqual(breaking_changes[0].get_suggested_commit(), "remove enum `foo`.")
+        self.assertEqual(
+            breaking_changes[0].get_suggested_commit(), "remove enum `foo`."
+        )
 
     def test_detector_all_changes(self):
         # Mock original and updated FileDescriptorSet.

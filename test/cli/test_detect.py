@@ -660,7 +660,9 @@ class CliDetectTest(unittest.TestCase):
                 "enum_v1.proto L5: remove enum `BookType`.\n",
             )
 
-    def test_suggested_commit_with_single_directory_enum_empty_updated_protos_list(self):
+    def test_suggested_commit_with_single_directory_enum_empty_updated_protos_list(
+        self,
+    ):
         # Mock the stdout so that the unit test does not
         # print anything to the console.
         with patch("sys.stdout", new=StringIO()):
@@ -1108,6 +1110,7 @@ class CliDetectTest(unittest.TestCase):
                 result.output,
                 "file.proto L7: add field `.test_non_breaking.Message.added`.\n",
             )
+
 
 if __name__ == "__main__":
     unittest.main()

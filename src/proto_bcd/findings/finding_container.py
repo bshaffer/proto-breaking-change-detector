@@ -146,7 +146,5 @@ class FindingContainer:
                 if finding.location.source_code_line == -1 or not line_numbers:
                     output_message += f"{file_name}: {suggested_commit}\n"
                 else:
-                    output_message += (
-                        f"{file_name} L{finding.location.source_code_line}: {suggested_commit}\n"
-                    )
+                    output_message += f"{file_name} L{finding.location.source_code_line}: {suggested_commit}\n"
         return output_message
