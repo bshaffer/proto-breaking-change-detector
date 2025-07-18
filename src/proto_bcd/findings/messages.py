@@ -19,168 +19,182 @@ from proto_bcd.findings.finding_category import FindingCategory
 
 _templates = defaultdict(lambda: "Unknown change type")
 _templates[FindingCategory.ENUM_VALUE_ADDITION] = (
-    "add enum value `{context}.{subject}`."
+    "A new value `{subject}` is added to enum `{context}`."
 )
 _templates[FindingCategory.ENUM_VALUE_REMOVAL] = (
-    "remove enum value `{context}.{subject}`."
+    "An existing value `{subject}` is removed from enum `{context}`."
 )
 _templates[FindingCategory.ENUM_VALUE_NAME_CHANGE] = (
-    "rename enum value `{context}.{oldsubject}` to `{context}.{subject}`."
+    "Existing value `{oldsubject}` is renamed to `{subject}` in enum `{context}`."
 )
 _templates[FindingCategory.ENUM_VALUE_NUMBER_CHANGE] = (
-    "change enum value `{context}.{oldsubject}` to `{context}.{subject}`."
+    "Existing value `{oldsubject}` is changed to `{subject}` in enum `{context}`."
 )
-_templates[FindingCategory.ENUM_ADDITION] = "add enum `{subject}`."
-_templates[FindingCategory.ENUM_REMOVAL] = "remove enum `{subject}`."
-_templates[FindingCategory.FIELD_ADDITION] = "add field `{context}.{subject}`."
-_templates[FindingCategory.FIELD_REMOVAL] = "remove field `{context}.{subject}`."
+_templates[FindingCategory.ENUM_ADDITION] = "A new enum `{subject}` is added."
+_templates[FindingCategory.ENUM_REMOVAL] = "An existing enum `{subject}` is removed."
+_templates[FindingCategory.FIELD_ADDITION] = (
+    "A new field `{subject}` is added to message `{context}`."
+)
+_templates[FindingCategory.FIELD_REMOVAL] = (
+    "An existing field `{subject}` is removed from message `{context}`."
+)
 _templates[FindingCategory.FIELD_NAME_CHANGE] = (
-    "rename field `{context}.{oldsubject}` to `{context}.{subject}`."
+    "An existing field `{oldsubject}` is renamed to `{subject}` in message `{context}`."
 )
 _templates[FindingCategory.FIELD_REPEATED_CHANGE] = (
-    "change repeated flag of field `{context}.{subject}`."
+    "Changed repeated flag of an existing field `{subject}` in message `{context}`."
 )
 _templates[FindingCategory.FIELD_TYPE_CHANGE] = (
-    "change type of field `{context}.{subject}` from `{oldtype}` to `{type}`."
+    "The type of an existing field `{subject}` is changed from `{oldtype}` to `{type}` in message `{context}`."
 )
 _templates[FindingCategory.FIELD_ONEOF_MOVE_OUT] = (
-    "move field `{context}.{subject}` out of oneof."
+    "An existing field `{subject}` is moved out of oneof in message `{context}`."
 )
 _templates[FindingCategory.FIELD_ONEOF_MOVE_IN] = (
-    "move field `{context}.{subject}` into oneof."
+    "An existing field `{subject}` is moved in to oneof in message `{context}`."
 )
 _templates[FindingCategory.FIELD_PROTO3_OPTIONAL_CHANGE] = (
-    "change proto3 optional flag of field `{context}.{subject}`."
+    "Changed proto3 optional flag of an existing field `{subject}` in message `{context}`."
 )
 _templates[FindingCategory.FIELD_BEHAVIOR_CHANGE] = (
-    "change field behavior of field `{context}.{subject}`."
+    "Changed field behavior for an existing field `{subject}` in message `{context}`."
 )
 _templates[FindingCategory.NEW_REQUIRED_FIELD] = (
-    "add REQUIRED field `{context}.{subject}`."
+    "New REQUIRED field `{subject}` in message `{context}`."
 )
 _templates[FindingCategory.FIELD_FORMAT_CHANGE] = (
-    "change field format of field `{context}.{subject}`."
+    "Changed field format for an existing field `{subject}` in message `{context}`."
 )
 _templates[FindingCategory.RESOURCE_REFERENCE_REMOVAL] = (
-    "remove resource_reference option from field `{context}.{subject}`."
+    "An existing resource_reference option of the field `{subject}` is removed in message `{context}`."
 )
 _templates[FindingCategory.RESOURCE_REFERENCE_ADDITION] = (
-    "add resource_reference option to field `{context}.{subject}`."
+    "A new resource_reference option is added to the field `{subject}` in message `{context}`."
 )
 _templates[FindingCategory.RESOURCE_REFERENCE_CHANGE] = (
-    "change resource_reference option type of field `{context}.{subject}` from `{oldtype}` to `{type}`."
+    "A type of an existing resource_reference option of the field `{subject}` in message `{context}` is changed from `{oldtype}` to `{type}`."
 )
 _templates[FindingCategory.RESOURCE_REFERENCE_MOVED] = (
-    "move resource_reference option of field `{context}.{subject}` to another message."
+    "An existing resource_reference option of the field `{subject}` is removed from message `{context}` but moved to another message."
 )
 _templates[FindingCategory.RESOURCE_REFERENCE_CHANGE_CHILD_TYPE] = (
-    "change resource_reference option child_type of field `{context}.{subject}` from `{oldtype}` to `{type}`."
+    "The child_type `{oldtype}` and type `{type}` of resource_reference option in field `{subject}` of message `{context}` cannot be resolved to the identical resource."
 )
-_templates[FindingCategory.MESSAGE_ADDITION] = "add message `{subject}`."
-_templates[FindingCategory.MESSAGE_REMOVAL] = "remove message `{subject}`."
+_templates[FindingCategory.MESSAGE_ADDITION] = "A new message `{subject}` is added."
+_templates[FindingCategory.MESSAGE_REMOVAL] = (
+    "An existing message `{subject}` is removed."
+)
 _templates[FindingCategory.MESSAGE_MOVED_TO_ANOTHER_FILE] = (
-    "move message `{subject}` from `{oldcontext}` to `{context}`."
+    "An existing message `{subject}` is moved from `{oldcontext}` to `{context}`."
 )
 _templates[FindingCategory.RESOURCE_DEFINITION_ADDITION] = (
-    "add resource_definition `{subject}`."
+    "A new resource_definition `{subject}` is added."
 )
 _templates[FindingCategory.RESOURCE_DEFINITION_REMOVAL] = (
-    "remove resource_definition `{subject}`."
+    "An existing resource_definition `{subject}` is removed."
 )
 _templates[FindingCategory.RESOURCE_PATTERN_REMOVAL] = (
-    "remove resource pattern value `{type}` from resource definition `{subject}`."
+    "An existing resource pattern value `{type}` from the resource definition `{subject}` is removed."
 )
 _templates[FindingCategory.RESOURCE_PATTERN_REORDER] = (
-    "reorder resource patterns of `{subject}`."
+    "An existing resource's patterns were reordered in `{subject}`."
 )
 _templates[FindingCategory.RESOURCE_PATTERN_ADDITION] = (
-    "add resource pattern value `{type}` to resource definition `{subject}`."
+    "A new resource pattern value `{type}` added to the resource definition `{subject}`."
 )
-_templates[FindingCategory.SERVICE_ADDITION] = "add service `{subject}`."
-_templates[FindingCategory.SERVICE_REMOVAL] = "remove service `{subject}`."
+_templates[FindingCategory.SERVICE_ADDITION] = "A new service `{subject}` is added."
+_templates[FindingCategory.SERVICE_REMOVAL] = (
+    "An existing service `{subject}` is removed."
+)
 _templates[FindingCategory.SERVICE_HOST_ADDITION] = (
-    "add default host `{subject}` to service `{context}`."
+    "A new default host `{subject}` is added to service `{context}`."
 )
 _templates[FindingCategory.SERVICE_HOST_REMOVAL] = (
-    "remove default host `{subject}` from service `{context}`."
+    "An existing default host `{subject}` is removed from service `{context}`."
 )
 _templates[FindingCategory.SERVICE_HOST_CHANGE] = (
-    "change default host of service `{context}` from `{oldsubject}` to `{subject}`."
+    "An existing default host `{oldsubject}` is changed to `{subject}` in service `{context}`."
 )
 _templates[FindingCategory.METHOD_SIGNATURE_REMOVAL] = (
-    "remove method_signature `{type}` from rpc method `{context}.{subject}`."
+    "An existing method_signature `{type}` is removed from method `{subject}` in service `{context}`."
 )
 _templates[FindingCategory.METHOD_SIGNATURE_ADDITION] = (
-    "add method_signature `{type}` to rpc method `{context}.{subject}`."
+    "A new method_signature `{type}` is added to method `{subject}` in service `{context}`."
 )
 _templates[FindingCategory.METHOD_SIGNATURE_ORDER_CHANGE] = (
-    "change position of method_signature `{type}` of rpc method `{context}.{subject}`."
+    "An existing method_signature `{type}` has changed its position in method `{subject}` in service `{context}`."
 )
 _templates[FindingCategory.OAUTH_SCOPE_REMOVAL] = (
-    "remove oauth_scope `{subject}` from service `{context}`."
+    "An existing oauth_scope `{subject}` is removed from service `{context}`."
 )
 _templates[FindingCategory.OAUTH_SCOPE_ADDITION] = (
-    "add oauth_scope `{subject}` to service `{context}`."
+    "A new oauth_scope `{subject}` is added to service `{context}`."
 )
-_templates[FindingCategory.METHOD_REMOVAL] = "remove rpc method `{context}.{subject}`."
-_templates[FindingCategory.METHOD_ADDITION] = "add rpc method `{context}.{subject}`."
+_templates[FindingCategory.METHOD_REMOVAL] = (
+    "An existing method `{subject}` is removed from service `{context}`."
+)
+_templates[FindingCategory.METHOD_ADDITION] = (
+    "A new method `{subject}` is added to service `{context}`."
+)
 _templates[FindingCategory.METHOD_INPUT_TYPE_CHANGE] = (
-    "change input type of rpc method `{context}.{subject}` from `{oldtype}` to `{type}`."
+    "Input type of method `{subject}` is changed from `{oldtype}` to `{type}` in service `{context}`."
 )
 _templates[FindingCategory.METHOD_RESPONSE_TYPE_CHANGE] = (
-    "change response type of rpc method `{context}.{subject}` from `{oldtype}` to `{type}`."
+    "Response type of method `{subject}` is changed from `{oldtype}` to `{type}` in service `{context}`."
 )
 _templates[FindingCategory.METHOD_CLIENT_STREAMING_CHANGE] = (
-    "change client streaming flag of rpc method `{context}.{subject}`."
+    "Client streaming flag is changed for method `{subject}` in service `{context}`."
 )
 _templates[FindingCategory.METHOD_SERVER_STREAMING_CHANGE] = (
-    "change server streaming flag of rpc method `{context}.{subject}`."
+    "Server streaming flag is changed for method `{subject}` in service `{context}`."
 )
 _templates[FindingCategory.METHOD_PAGINATED_RESPONSE_CHANGE] = (
-    "change pagination feature of rpc method `{context}.{subject}`."
+    "Pagination feature is changed for method `{subject}` in service `{context}`."
 )
 _templates[FindingCategory.LRO_RESPONSE_CHANGE] = (
-    "change long running operation response type of rpc method `{context}.{subject}` from `{oldtype}` to `{type}`."
+    "Long running operation response type is changed from `{oldtype}` to `{type}` for method `{subject}` in service `{context}`."
 )
 _templates[FindingCategory.LRO_METADATA_CHANGE] = (
-    "change long running operation metadata type of rpc method `{context}.{subject}` from `{oldtype}` to `{type}`."
+    "Long running operation metadata type is changed from `{oldtype}` to `{type}` for method `{subject}` in service `{context}`."
 )
 _templates[FindingCategory.LRO_ANNOTATION_ADDITION] = (
-    "add long running annotation to rpc method `{context}.{subject}`."
+    "New long running annotation is added for method `{subject}` in service `{context}`."
 )
 _templates[FindingCategory.LRO_ANNOTATION_REMOVAL] = (
-    "remove long running annitation from rpc method `{context}.{subject}`."
+    "Existing long running annitation is removed from method `{subject}` in service `{context}`."
 )
 _templates[FindingCategory.HTTP_ANNOTATION_CHANGE] = (
-    "change google.api.http annotation `{type}` of rpc method `{context}.{subject}`."
+    "An existing google.api.http annotation `{type}` is changed for method `{subject}` in service `{context}`."
 )
 _templates[FindingCategory.HTTP_ANNOTATION_REMOVAL] = (
-    "remove google.api.http annotation from rpc method `{context}.{subject}`."
+    "An existing google.api.http annotation is removed from method `{subject}` in service `{context}`."
 )
 _templates[FindingCategory.HTTP_ANNOTATION_ADDITION] = (
-    "add google.api.http annotation to method `{context}.{subject}`."
+    "A new google.api.http annotation is added to method `{subject}` in service `{context}`."
 )
 _templates[FindingCategory.PACKAGING_OPTION_REMOVAL] = (
-    "remove packaging option `{type}` from `{subject}`."
+    "An existing packaging option `{type}` for `{subject}` is removed."
 )
 _templates[FindingCategory.PACKAGING_OPTION_ADDITION] = (
-    "add packaging option `{type}` to `{subject}`."
+    "A new packaging option `{type}` for `{subject}` is added."
 )
 _templates[FindingCategory.SERVICE_COMMENT_CHANGE] = (
-    "change comment of service `{subject}`."
+    "A comment for service `{subject}` is changed."
 )
 _templates[FindingCategory.METHOD_COMMENT_CHANGE] = (
-    "change comment of rpc method `{context}.{subject}`."
+    "A comment for method `{subject}` in service `{context}` is changed."
 )
 _templates[FindingCategory.MESSAGE_COMMENT_CHANGE] = (
-    "change comment of message `{subject}`."
+    "A comment for message `{subject}` is changed."
 )
 _templates[FindingCategory.FIELD_COMMENT_CHANGE] = (
-    "change comment of field `{context}.{subject}`."
+    "A comment for field `{subject}` in message `{context}` is changed."
 )
-_templates[FindingCategory.ENUM_COMMENT_CHANGE] = "change comment of enum `{subject}`."
+_templates[FindingCategory.ENUM_COMMENT_CHANGE] = (
+    "A comment for enum `{subject}` is changed."
+)
 _templates[FindingCategory.ENUM_VALUE_COMMENT_CHANGE] = (
-    "change comment of enum value `{context}.{subject}`."
+    "A comment for enum value `{subject}` in enum `{context}` is changed."
 )
 
 templates = MappingProxyType(_templates)

@@ -74,6 +74,10 @@ class EnumValueComparatorTest(unittest.TestCase):
         # Test the message has both name and number in it
         self.assertEqual(
             finding.get_message(),
+            "Existing value `FOO = 1` is changed to `FOO = 2` in enum `ctx`.",
+        )
+        self.assertEqual(
+            finding.get_suggested_commit(),
             "change enum value `ctx.FOO = 1` to `ctx.FOO = 2`.",
         )
 
