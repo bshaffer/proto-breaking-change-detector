@@ -168,6 +168,19 @@ class FindingContainerTest(unittest.TestCase):
         self.assertEqual(
             message, "test.proto L1: A new method `subject` is added to service ``.\n"
         )
+    def test_suggested_commits_for_all_findings(self):
+        finding_container = FindingContainer()
+        finding_container.add_finding(
+            category=FindingCategory.METHOD_ADDITION,
+            proto_file_name="test.proto",
+            source_code_line=1,
+            conventional_commit_tag=ConventionalCommitTag.FEAT,
+            subject="subject",
+        )
+        message = finding_container.to_suggested_commits(all_changes=True)
+        self.assertEqual(
+            message, "test.proto L1: add rpc method `.subject`.\n"
+        )
 
 
 if __name__ == "__main__":
