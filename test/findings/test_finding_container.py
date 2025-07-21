@@ -77,10 +77,10 @@ class FindingContainerTest(unittest.TestCase):
             + "my_proto.proto L12: An existing method `subject` is removed from service `context`.\n",
         )
         self.assertEqual(
-            self.finding_container.to_suggested_commits(),
+            self.finding_container.to_suggested_commit_messages(),
             "my_other_proto.proto: remove method_signature `type` from rpc method `context.subject`.\n"
-            + "my_proto.proto L5: remove resource_definition `subject`.\n"
-            + "my_proto.proto L12: remove rpc method `context.subject`.\n",
+            + "my_proto.proto: remove resource_definition `subject`.\n"
+            + "my_proto.proto: remove rpc method `context.subject`.\n",
         )
 
     def test_change_type_major_1(self):
@@ -169,7 +169,7 @@ class FindingContainerTest(unittest.TestCase):
             message, "test.proto L1: A new method `subject` is added to service ``.\n"
         )
 
-    def test_suggested_commits_for_all_findings(self):
+    def test_suggested_commit_messages_for_all_findings(self):
         finding_container = FindingContainer()
         finding_container.add_finding(
             category=FindingCategory.METHOD_ADDITION,
@@ -178,8 +178,8 @@ class FindingContainerTest(unittest.TestCase):
             conventional_commit_tag=ConventionalCommitTag.FEAT,
             subject="subject",
         )
-        message = finding_container.to_suggested_commits(all_changes=True)
-        self.assertEqual(message, "test.proto L1: add rpc method `.subject`.\n")
+        message = finding_container.to_suggested_commit_messages(all_changes=True)
+        self.assertEqual(message, "test.proto: add rpc method `.subject`.\n")
 
 
 if __name__ == "__main__":

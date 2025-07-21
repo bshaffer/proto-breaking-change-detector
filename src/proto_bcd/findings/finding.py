@@ -14,7 +14,9 @@
 
 
 from proto_bcd.findings.messages import templates
-from proto_bcd.findings.suggested_commits import suggested_commit_templates
+from proto_bcd.findings.suggested_commit_messages import (
+    templates as suggested_commit_messsage_templates,
+)
 
 
 class Finding:
@@ -75,7 +77,7 @@ class Finding:
         format_parameters = self.to_dict()
         return templates[self.category].format(**format_parameters)
 
-    def get_suggested_commit(self):
+    def get_suggested_commit_message(self):
         format_parameters = self.to_dict()
         # add relative context name to make conventional commits less verbose
         # when the changes all have the same package name
@@ -83,4 +85,6 @@ class Finding:
             (self.context[i:] for i, c in enumerate(self.context) if c.isupper()),
             self.context,
         )
-        return suggested_commit_templates[self.category].format(**format_parameters)
+        return suggested_commit_messsage_templates[self.category].format(
+            **format_parameters
+        )

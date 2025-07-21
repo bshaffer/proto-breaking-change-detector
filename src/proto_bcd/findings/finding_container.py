@@ -125,7 +125,7 @@ class FindingContainer:
                     )
         return output_message
 
-    def to_suggested_commits(self, line_numbers=True, all_changes=False):
+    def to_suggested_commit_messages(self, all_changes=False):
         output_message = ""
         file_to_findings = defaultdict(list)
         if all_changes:
@@ -142,9 +142,6 @@ class FindingContainer:
             # Sort message alphabetically if the line number is same.
             sorted_findings = sorted_filtered_findings(findings, lambda f: True)
             for finding in sorted_findings:
-                suggested_commit = finding.get_suggested_commit()
-                if finding.location.source_code_line == -1 or not line_numbers:
-                    output_message += f"{file_name}: {suggested_commit}\n"
-                else:
-                    output_message += f"{file_name} L{finding.location.source_code_line}: {suggested_commit}\n"
+                suggested_commit_message = finding.get_suggested_commit_message()
+                output_message += f"{file_name}: {suggested_commit_message}\n"
         return output_message

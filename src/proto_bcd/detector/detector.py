@@ -61,10 +61,9 @@ class Detector:
                     all_changes=self.opts.all_changes,
                 )
             )
-        if self.opts and self.opts.suggested_commits:
+        if self.opts and self.opts.suggested_commit_messages:
             sys.stdout.write(
-                self.finding_container.to_suggested_commits(
-                    line_numbers=self.opts.line_numbers,
+                self.finding_container.to_suggested_commit_messages(
                     all_changes=self.opts.all_changes,
                 )
             )

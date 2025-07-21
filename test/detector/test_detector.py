@@ -74,7 +74,7 @@ class DectetorTest(unittest.TestCase):
                     original_descriptor_set_file_path=None,
                     update_descriptor_set_file_path=None,
                     human_readable_message=True,
-                    suggested_commits=True,
+                    suggested_commit_messages=True,
                 )
         with mock.patch("sys.stdout", new=StringIO()) as fake_output:
             result = Detector(
@@ -85,9 +85,9 @@ class DectetorTest(unittest.TestCase):
                 "my_proto.proto L2: An existing method `DoThing` is removed from service `Placeholder`.\n"
                 + "my_proto.proto L6: An existing message `input` is removed.\n"
                 + "my_proto.proto L12: An existing message `output` is removed.\n"
-                + "my_proto.proto L2: remove rpc method `Placeholder.DoThing`.\n"
-                + "my_proto.proto L6: remove message `input`.\n"
-                + "my_proto.proto L12: remove message `output`.\n",
+                + "my_proto.proto: remove rpc method `Placeholder.DoThing`.\n"
+                + "my_proto.proto: remove message `input`.\n"
+                + "my_proto.proto: remove message `output`.\n",
             )
             self.assertEqual(len(result), 3)
 
@@ -109,7 +109,7 @@ class DectetorTest(unittest.TestCase):
             breaking_changes[0].get_message(), "An existing enum `foo` is removed."
         )
         self.assertEqual(
-            breaking_changes[0].get_suggested_commit(), "remove enum `foo`."
+            breaking_changes[0].get_suggested_commit_message(), "remove enum `foo`."
         )
 
     def test_detector_all_changes(self):
