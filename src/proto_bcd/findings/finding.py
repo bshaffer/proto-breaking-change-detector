@@ -15,7 +15,7 @@
 
 from proto_bcd.findings.messages import templates
 from proto_bcd.findings.suggested_commit_messages import (
-    templates as suggested_commit_messsage_templates,
+    templates as suggested_commit_message_templates,
 )
 
 
@@ -85,6 +85,6 @@ class Finding:
             (self.context[i:] for i, c in enumerate(self.context) if c.isupper()),
             self.context,
         )
-        return suggested_commit_messsage_templates[self.category].format(
+        return suggested_commit_message_templates[self.category].format(
             **format_parameters
         )

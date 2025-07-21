@@ -19,6 +19,9 @@ from proto_bcd.findings.finding_category import (
     ChangeType,
     ConventionalCommitTag,
 )
+from proto_bcd.findings.suggested_commit_messages import (
+    templates as suggested_commit_message_templates,
+)
 
 
 class FindingContainerTest(unittest.TestCase):
@@ -180,6 +183,9 @@ class FindingContainerTest(unittest.TestCase):
         )
         message = finding_container.to_suggested_commit_messages(all_changes=True)
         self.assertEqual(message, "test.proto: add rpc method `.subject`.\n")
+
+    def test_suggested_commit_messages_and_findings_are_same_length(self):
+        self.assertEqual(len(FindingCategory), len(suggested_commit_message_templates))
 
 
 if __name__ == "__main__":

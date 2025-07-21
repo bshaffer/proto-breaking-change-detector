@@ -68,7 +68,7 @@ _templates[FindingCategory.RESOURCE_REFERENCE_ADDITION] = (
     "add resource_reference option to field `{context}.{subject}`."
 )
 _templates[FindingCategory.RESOURCE_REFERENCE_CHANGE] = (
-    "change resource_reference option type of field `{context}.{subject}` from `{oldtype}` to `{type}`."
+    "change resource_reference type of `{context}.{subject}` from `{oldtype}` to `{type}`."
 )
 _templates[FindingCategory.RESOURCE_REFERENCE_MOVED] = (
     "move resource_reference option of field `{context}.{subject}` to another message."
