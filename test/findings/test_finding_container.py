@@ -185,7 +185,11 @@ class FindingContainerTest(unittest.TestCase):
         self.assertEqual(message, "test.proto: add rpc method `.subject`.\n")
 
     def test_suggested_commit_messages_and_findings_are_same_length(self):
-        self.assertEqual(len(FindingCategory), len(suggested_commit_message_templates))
+        self.assertEqual(
+            len(FindingCategory),
+            len(suggested_commit_message_templates),
+            "if you add a new FindingCategory value, you must add a suggested_commit_message as well!",
+        )
 
 
 if __name__ == "__main__":
