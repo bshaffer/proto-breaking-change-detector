@@ -34,7 +34,7 @@ class Options:
                       `$root/detected_breaking_changes.json`.
     line_numbers: Show line numbers from the human readable output. True by default.
     all_changes: Show all changes, not only breaking changes. False by default.
-    suggested_commit_messages: Optional flag. Enable printing the suggeted commit
+    suggested_commit_messages: Optional flag. Enable printing the suggested commit
                                messages if true. Default value if false.
     """
 
